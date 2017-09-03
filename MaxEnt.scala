@@ -96,7 +96,8 @@ class MaxEnt
                 if (count > iterationMax) break
                 f = gradient(alpha, resultSpectral, model, omega, G_real, G_imag, K_real, K_imag, error)
                 Jacobian = J(alpha, omega, resultSpectral, K_real, K_imag, error)
-                var diff = ConjugateGradient.solveLinearSystem(Jacobian, f)
+                //var diff = ConjugateGradient.solveLinearSystem(Jacobian, f)
+                var diff = Jacobian.inverse()*f
                 iterationError = diff.norm()
                 println("count = " + count + ", Newton iteration error = " + iterationError)
                 resultSpectral = resultSpectral - diff

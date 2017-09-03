@@ -83,9 +83,17 @@ object Main
         {
             println("alpha = " + alpha)
             spectral = maxEnt.newton(alpha, spectral, model, omega, g_real, g_imag, K_real, K_imag, error)
-            val outputFile: String = "A_" + alpha.toString + ".txt"
-            printSpectral(omega, spectral, outputFile)
-            "mv " + outputFile + "  model.txt" ! 
+            var sum = 0.0
+            val domega = omega.getElement(1) - omega.getElement(0)
+            for (i <- 0 to omega.getLength()-2)
+            {
+                sum = sum + 0.5*(spectral.getElement(i) + spectral.getElement(i+1))*domega
+            }
+            for (i <- 0 to omega.getLength()-1)
+            {
+                spectral.setElement(i, spectral.getElement(i)/sum)
+            }
         }
+        printSpectral(omega, spectral, "model.txt")
     }
 }

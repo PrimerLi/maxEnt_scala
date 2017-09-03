@@ -26,7 +26,7 @@ object Generate
     }
 
     val random = new Random()
-    val error = 0.02
+    val error = 0.005
     def GReal(omega_n:Array[Double], omega:Array[Double]): Vector = 
     {
         val result = Kernel.KReal(omega_n, omega)*A(omega)

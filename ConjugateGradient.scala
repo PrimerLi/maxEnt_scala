@@ -32,16 +32,16 @@ object ConjugateGradient
         var x = new Vector(dimension)
         var count = 0
         var iterationMax = 5*dimension
-        val eps = 1.0e-15
+        val eps:Double = 1.0e-32
         var r0: Vector = new Vector(dimension)
         var p: Vector = new Vector(dimension)
         r0 = b - A*x
         p = r0
         var r1 = r0
         breakable{
-            var alpha = 0.0
-            var beta = 0.0
-            var error = 0.0
+            var alpha:Double = 0.0
+            var beta:Double = 0.0
+            var error:Double = 0.0
             while(true)
             {
                 count = count + 1
@@ -57,7 +57,6 @@ object ConjugateGradient
                 r0 = r1
             }
         }
-        //println("A*x - b = " + (A*x - b).norm())
         return x
     }
 
@@ -91,5 +90,6 @@ object ConjugateGradient
         println("Solution of A*x = b is ")
         println(x)
         println("error = " + (A*x - b).norm())
+        println("Inverse error = " + (A*(A.inverse()*b) - b).norm())
     }
 }

@@ -304,14 +304,14 @@ class Matrix
             return ((m.transpose().product(m)).subtract(id)).norm() < eps
         }
 
-        if (!isOrthogonal(Q))
+        /*if (!isOrthogonal(Q))
         {
             println("The Q matrix is not orthogonal. Q = ")
             println(Q)
             println("Q^T * Q = ")
             println(Q.transpose().product(Q))
             System.exit(-1)
-        }
+        }*/
         R = Q.transpose().product(this)
         return (Q, R)
     }
@@ -347,8 +347,8 @@ class Matrix
                 }
             }
         }
-        println("augmented matrix before inversion: ")
-        println(augmented)
+        //println("augmented matrix before inversion: ")
+        //println(augmented)
         for (i <- range.reverse)
         {
             for (j <- Range(0, i).reverse)
@@ -370,8 +370,8 @@ class Matrix
                 augmented.matrix(i)(colNumber) *= factor
             }
         }
-        println("augmented matrix after inversion: ")
-        println(augmented)
+        //println("augmented matrix after inversion: ")
+        //println(augmented)
         for (i <- 0 to dimension-1)
         {
             for (j <- 0 to dimension-1)
